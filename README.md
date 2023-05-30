@@ -5,11 +5,11 @@
 ### `yarn install`
 ### `yarn start`
 
-I've used 2 different api's (one for getting data and other to create websockets). This configuration can be done in ./src/config/config.ts file. If changed, you need to pay attention to Main files (./src/pages/main/AddressInfo.tsx, ./src/pages/main/TransactionInfo.tsx and ./src/pages/main/List.tsx). I want to move the calls to the endpoint to API.ts file, to don't have duplicated code. If I don't have time, here is a note that is something that I was going to do to centralize all equal call in api and also when the endpoint is changed we can easily change the url address.
+I've used 2 different api's (one for getting data and other to create websockets). This configuration can be done in ./src/config/config.ts file. If changed, you need to pay attention to Main files (./src/pages/main/AddressInfo.tsx, ./src/pages/main/TransactionInfo.tsx and ./src/pages/main/List.tsx). I didn't move the calls to API.ts file because i didn't create to much "noise" but it's something i would do different in a normal project, to don't have duplicated code. Something i would improve for sure would be centralize all equal call in api and create a backend to receive the request and call the blockchain to get the data.
 
 **Note: Because Blockchain.info api and Blockcypher websocket api was unstable (especially in testnet), i decided to mock the api and the websocket events to simulate a real experience.**
 
-**Note 2: Another feature i didn't do because i didn't have time was create an api as backend that the frontend would call for authentication, and also requests to blockchain to get information about addresses and transactions. In a real application, all subscriptions would be stored in a database as well as the user and its definition and information. To simplify I also mocked a simulation of an authentication forcing a dummy token in login.**
+**Note 2: Another feature i didn't do because i didn't have time was create an api as backend (as i mentioned above) that the frontend would call for authentication, and also requests to blockchain to get information about addresses and transactions. In a real application, all subscriptions would be stored in a database as well as the user information and its definition. To simplify I also mocked a simulation of an authentication forcing a dummy token in login.**
 
 <br />
 <br />
@@ -48,5 +48,17 @@ As requested I add in the menu an option for the user select which currency he w
 
 ### Tests
 
-Currently I didn't had any tests but I'll try to add cypress and some tests examples until deadline to show you as in a real application I would do.
+I added e2e tests and unit tests (cypress and jest).
+
+### `yarn test:cy` 
+runs cypress tests
+
+### `yarn test:cy:local` 
+runs cypress tests with interactive mode
+
+### `yarn test` 
+runs unit tests with jest with coverage
+
+**Note: I added a pre-commit action to run jest whenever a commit happens, which is something i would do in a real project.**
+
 
