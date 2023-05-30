@@ -1,5 +1,7 @@
+import axios from "axios";
+import config, { ENV } from "../config/config";
 import actions from "../redux/reducers/actions";
-import { IUser } from "../types/user";
+import { ICurrency, IUser } from "../types/user";
 
 const login = (email: string, password: string) => {
   window.localStorage.setItem(
@@ -10,4 +12,13 @@ const login = (email: string, password: string) => {
   actions.user.setUser({ email, subscriptions: [] } as unknown as IUser);
 };
 
-export { login };
+const getExchangeRates = async () => {
+  const currencyResponse = await axios.get(
+    `${config[ENV as keyof typeof config].BLOCKCHAIN_URL}/ticker`
+  );
+  if (currencyResponse.data) {
+    actions.blockchain.setExchangeRates(currencyResponse.data);
+  }
+};
+
+export { login, getExchangeRates };

@@ -1,5 +1,5 @@
 import ActionObject from "../../types/reduxTypes";
-import { IUser } from "../../../types/user";
+import { ICurrency, IUser } from "../../../types/user";
 import { ISearchCount, ISubscription, UserState } from "./userModel";
 
 const initialState: UserState = {
@@ -7,6 +7,7 @@ const initialState: UserState = {
   subscriptions: [],
   searchCounts: {},
   topSearch: {},
+  currency: 'BTC'
 };
 
 export const UserActionTypes = {
@@ -15,6 +16,7 @@ export const UserActionTypes = {
   SET_SUBSCRIPTIONS: "SET_SUBSCRIPTIONS",
   UPDATE_SUBSCRIPTION: "UPDATE_SUBSCRIPTION",
   SET_SEARCH_COUNT: "SET_SEARCH_COUNT",
+  SET_CURRENCY: "SET_CURRENCY",
   CLEAR: "CLEAR",
 };
 
@@ -52,6 +54,13 @@ export const doSetSearchCounts = (newValues: {
   return {
     type: UserActionTypes.SET_SEARCH_COUNT,
     payload: newValues,
+  };
+};
+
+export const doSetCurrency = (currency: ICurrency) => {
+  return {
+    type: UserActionTypes.SET_CURRENCY,
+    payload: currency,
   };
 };
 
@@ -94,6 +103,11 @@ export const userReducer = (
         searchCounts: action.payload.searchCounts,
         topSearch: action.payload.topSearch,
       };
+    case UserActionTypes.SET_CURRENCY:
+      return {
+        ...state,
+        currency: action.payload
+      }
     case UserActionTypes.CLEAR:
       return initialState;
     case UserActionTypes.GET_USER:

@@ -7,6 +7,7 @@ import {
   doClear,
   doUpdateSubscription,
   doSetSearchCounts,
+  doSetCurrency,
 } from "./userReducer";
 
 export const userActions = bindActionCreators(
@@ -16,6 +17,7 @@ export const userActions = bindActionCreators(
     setSubscription: doSetSubscription,
     updateSubscription: doUpdateSubscription,
     setSearchCounts: doSetSearchCounts,
+    setCurrency: doSetCurrency,
     clear: doClear,
   },
   store.dispatch

@@ -13,8 +13,16 @@ import { Link } from "react-router-dom";
 import Logout from "@mui/icons-material/Logout";
 import { useSelector } from "react-redux";
 import { State } from "../../redux/store/rootReducer";
-import { Badge } from "@mui/material";
+import {
+  Badge,
+  FormControl,
+  InputLabel,
+  Select,
+  SelectChangeEvent,
+} from "@mui/material";
 import { NotificationAddOutlined } from "@mui/icons-material";
+import actions from "../../redux/reducers/actions";
+import { ICurrency } from "../../types/user";
 
 const pages = ["list", "subscriptions", "notifications"];
 
@@ -34,6 +42,10 @@ function CustomMenu(props: IProps) {
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
+  };
+
+  const handleChange = (event: SelectChangeEvent) => {
+    actions.user.setCurrency(event.target.value as ICurrency);
   };
 
   const updatedSubscriptions = (state.user?.subscriptions || []).filter(
@@ -156,9 +168,30 @@ function CustomMenu(props: IProps) {
               </Button>
             ))}
           </Box>
-          <IconButton color="inherit" onClick={props.handleSignOut}>
-            <Logout />
-          </IconButton>
+          <>
+            <Box sx={{ minWidth: 90 }}>
+              <FormControl size="small" fullWidth>
+                <InputLabel id="currency-select-label" sx={{ color: "white" }}>
+                  Currency
+                </InputLabel>
+                <Select
+                  labelId="currency-select-label"
+                  id="currency-select"
+                  value={state.user.currency || "BTC"}
+                  label="Currency"
+                  onChange={handleChange}
+                  sx={{ color: "white" }}
+                >
+                  <MenuItem value="BTC">BTC</MenuItem>
+                  <MenuItem value="USD">USD</MenuItem>
+                  <MenuItem value="EUR">EUR</MenuItem>
+                </Select>
+              </FormControl>
+            </Box>
+            <IconButton color="inherit" onClick={props.handleSignOut}>
+              <Logout />
+            </IconButton>
+          </>
         </Toolbar>
       </Container>
     </AppBar>

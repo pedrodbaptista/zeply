@@ -7,6 +7,7 @@ import { State } from "../../redux/store/rootReducer";
 import { ISubscription } from "../../redux/reducers/userReducer/userModel";
 import createSubscription from "../../lib/subscription";
 import {
+  exchangeRate,
   getExampleAddress,
   getUserSubscription,
   mapAddressToIAddress,
@@ -101,10 +102,38 @@ function AddressInfo(props: IProps) {
               <div>
                 <p>Address: {data.address}</p>
                 <p>Number of confirmed transactions: {data.tx_count}</p>
-                <p>Total BTC Received: {data.total_received}</p>
-                <p>Total BTC Spent: {data.total_spent}</p>
-                <p>Total BTC Unspent: {data.total_unspent}</p>
-                <p>Current Balance: {data.final_balance}</p>
+                <p>
+                  Total {state.user.currency} Received:{" "}
+                  {exchangeRate(
+                    state.blockchain.rates,
+                    state.user.currency,
+                    data.total_received
+                  )}
+                </p>
+                <p>
+                  Total {state.user.currency} Spent:{" "}
+                  {exchangeRate(
+                    state.blockchain.rates,
+                    state.user.currency,
+                    data.total_spent
+                  )}
+                </p>
+                <p>
+                  Total {state.user.currency} Unspent:{" "}
+                  {exchangeRate(
+                    state.blockchain.rates,
+                    state.user.currency,
+                    data.total_unspent
+                  )}
+                </p>
+                <p>
+                  Current Balance ({state.user.currency}):{" "}
+                  {exchangeRate(
+                    state.blockchain.rates,
+                    state.user.currency,
+                    data.final_balance
+                  )}
+                </p>
               </div>
             ) : (
               <p>Address not found</p>

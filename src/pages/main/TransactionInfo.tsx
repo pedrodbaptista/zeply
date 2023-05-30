@@ -3,6 +3,7 @@ import { ITransaction } from "../../types/transaction";
 import { Box, Button, Card, CardActions, CardContent } from "@mui/material";
 import { ISubscription } from "../../redux/reducers/userReducer/userModel";
 import {
+  exchangeRate,
   getExampleTransaction,
   getUserSubscription,
   mapTransactionToITransaction,
@@ -83,9 +84,30 @@ function TransactionInfo(props: IProps) {
                 <p>Status: {data.status}</p>
                 <p>Size: {data.size}</p>
                 <p>Number of Confirmations: {data.number_confirmations}</p>
-                <p>Total BTC Input: {data.total_input}</p>
-                <p>Total BTC Output: {data.total_output}</p>
-                <p>Total Fees: {data.total_fees}</p>
+                <p>
+                  Total {state.user.currency} Input:{" "}
+                  {exchangeRate(
+                    state.blockchain.rates,
+                    state.user.currency,
+                    data.total_input
+                  )}
+                </p>
+                <p>
+                  Total {state.user.currency} Output:{" "}
+                  {exchangeRate(
+                    state.blockchain.rates,
+                    state.user.currency,
+                    data.total_output
+                  )}
+                </p>
+                <p>
+                  Total Fees ({state.user.currency}):{" "}
+                  {exchangeRate(
+                    state.blockchain.rates,
+                    state.user.currency,
+                    data.total_fees
+                  )}
+                </p>
               </div>
             ) : (
               <p>Loading transaction information...</p>

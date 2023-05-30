@@ -3,3 +3,5 @@ export interface IUser {
   subscriptions: string[];
   isAuthenticated: boolean;
 }
+
+export type ICurrency = "USD" | "EUR" | "BTC";

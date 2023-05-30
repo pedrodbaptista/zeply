@@ -1,4 +1,5 @@
 import moment from "moment";
+import { IRates } from "../redux/reducers/blockchainReducer/blockchainModel";
 import {
   ISearchCount,
   UserState,
@@ -6,6 +7,7 @@ import {
 import { IAddress, IResponseAddress } from "../types/address";
 import { HashType } from "../types/hash";
 import { IResponseTransaction, ITransaction } from "../types/transaction";
+import { ICurrency } from "../types/user";
 
 export const mapAddressToIAddress = (data: IResponseAddress): IAddress => {
   return {
@@ -101,4 +103,8 @@ export const getExampleTransaction = (isTransaction: boolean = false) => {
     total_output: 1850000,
     total_fees: 10000,
   } as ITransaction;
+};
+
+export const exchangeRate = (rates: IRates, to: ICurrency, btc: number) => {
+  return to === "BTC" ? btc : btc * rates[to as keyof typeof rates].last;
 };
