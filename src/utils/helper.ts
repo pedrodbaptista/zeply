@@ -42,7 +42,7 @@ export const mapTransactionToITransaction = (
 };
 
 export const getUserSubscription = (user: UserState, hash: string) => {
-  return user.subscriptions.find((s) => s.hash === hash);
+  return (user?.subscriptions || []).find((s) => s.hash === hash);
 };
 
 export const getTopSearch = (searchCounts: ISearchCount): ISearchCount => {

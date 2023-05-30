@@ -7,7 +7,7 @@ const initialState: UserState = {
   subscriptions: [],
   searchCounts: {},
   topSearch: {},
-  currency: 'BTC'
+  currency: "BTC",
 };
 
 export const UserActionTypes = {
@@ -79,7 +79,7 @@ export const userReducer = (
       return {
         ...state,
         email: action.payload.email,
-        subscriptions: action.payload.password,
+        subscriptions: action.payload.subscriptions,
       };
     case UserActionTypes.SET_SUBSCRIPTIONS:
       const clonedState = { ...state };
@@ -106,8 +106,8 @@ export const userReducer = (
     case UserActionTypes.SET_CURRENCY:
       return {
         ...state,
-        currency: action.payload
-      }
+        currency: action.payload,
+      };
     case UserActionTypes.CLEAR:
       return initialState;
     case UserActionTypes.GET_USER:

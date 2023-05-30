@@ -140,7 +140,9 @@ function AddressInfo(props: IProps) {
             )}
           </div>
         </CardContent>
-        {!state.user.subscriptions.find((s) => s.hash === addressId) && (
+        {!(state.user?.subscriptions || []).find(
+          (s) => s.hash === (addressId || data.address)
+        ) && (
           <CardActions>
             <Button size="small" onClick={subscribe}>
               Subscribe

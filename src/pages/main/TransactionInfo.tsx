@@ -114,7 +114,9 @@ function TransactionInfo(props: IProps) {
             )}
           </div>
         </CardContent>
-        {!state.user.subscriptions.find((s) => s.hash === transactionId) && (
+        {!(state.user?.subscriptions || []).find(
+          (s) => s.hash === transactionId
+        ) && (
           <CardActions>
             <Button size="small" onClick={subscribe}>
               Subscribe
