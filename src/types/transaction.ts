@@ -14,9 +14,8 @@ export interface IResponseTransaction {
   received: string;
   confirmed: string;
   size: number;
-  confimations: number;
-  inputs: {output_value: number}[];
-  outputs: {value: number}[];
+  confirmations: number;
+  inputs: { output_value: number }[];
+  outputs: { value: number }[];
   fees: number;
 }
-

@@ -28,7 +28,7 @@ export const mapTransactionToITransaction = (
     received_time: moment(data.received).toISOString(),
     status: data.confirmed ? "Confirmed" : "Unconfirmed",
     size: data.size,
-    number_confirmations: data.confimations,
+    number_confirmations: data.confirmations,
     total_input: (data.inputs || []).reduce(
       (acc: number, i: { output_value: number }) => acc + i.output_value,
       0
@@ -70,9 +70,14 @@ export const getTopSearch = (searchCounts: ISearchCount): ISearchCount => {
 const randomIntFromInterval = (min: number, max: number) => {
   return Math.floor(Math.random() * (max - min + 1) + min);
 };
-export const getExampleAddress = (isAddress: boolean = false) => {
-  if (!isAddress && randomIntFromInterval(0, 10) > 6) {
-    throw Error("Not an address");
+export const getExampleAddress = (
+  isAddress: boolean = false,
+  randomError: boolean = true
+) => {
+  if (randomError) {
+    if (!isAddress && randomIntFromInterval(0, 10) > 6) {
+      throw Error("Not an address");
+    }
   }
   return {
     address: `tb1qaa493cm7ekevdhv3lm07zlep6fh4a6a6${randomIntFromInterval(
@@ -86,9 +91,14 @@ export const getExampleAddress = (isAddress: boolean = false) => {
     tx_count: 6,
   } as IAddress;
 };
-export const getExampleTransaction = (isTransaction: boolean = false) => {
-  if (!isTransaction && randomIntFromInterval(0, 3) > 6) {
-    throw Error("Not an Transaction");
+export const getExampleTransaction = (
+  isTransaction: boolean = false,
+  randomError: boolean = true
+) => {
+  if (randomError) {
+    if (!isTransaction && randomIntFromInterval(0, 3) > 6) {
+      throw Error("Not an Transaction");
+    }
   }
   return {
     txid: `2d9e35680ba093c5a37eb7c9dd069654356e13e30ba24d051ecd94d029${randomIntFromInterval(
