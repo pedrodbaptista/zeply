@@ -1,46 +1,52 @@
-# Getting Started with Create React App
+# Welcome to code challenge
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## To run this application follow the steps bellow
 
-## Available Scripts
+### `yarn install`
+### `yarn start`
 
-In the project directory, you can run:
+I've used 2 different api's (one for getting data and other to create websockets). This configuration can be done in ./src/config/config.ts file. If changed, you need to pay attention to Main files (./src/pages/main/AddressInfo.tsx, ./src/pages/main/TransactionInfo.tsx and ./src/pages/main/List.tsx). I want to move the calls to the endpoint to API.ts file, to don't have duplicated code. If I don't have time, here is a note that is something that I was going to do to centralize all equal call in api and also when the endpoint is changed we can easily change the url address.
 
-### `npm start`
+**Note: Because Blockchain.info api and Blockcypher websocket api was unstable (especially in testnet), i decided to mock the api and the websocket events to simulate a real experience.**
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+**Note 2: Another feature i didn't do because i didn't have time was create an api as backend that the frontend would call for authentication, and also requests to blockchain to get information about addresses and transactions. In a real application, all subscriptions would be stored in a database as well as the user and its definition and information. To simplify I also mocked a simulation of an authentication forcing a dummy token in login.**
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+<br />
+<br />
 
-### `npm test`
+## Main features
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Authentication
 
-### `npm run build`
+An user can insert any email and password to authenticate in the application (since i'm only simulating an authentication) which will take him to the homepage which presents the top 5 searches for addresses and transactions. I didn't connect them but would be something easy as i did in search or in notifications and subscriptions.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Top Search
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+In the homepage (clicking in 'Zeply' in the top left of the menu) or calling url '/' will take the user to top 5 searches
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+### List
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+In this menu option will search for an hash (either address or transaction), which in a real world would be connected to an endpoint that would retrieve the correct data, since i was having issues because the endpoint was too unstable and had limitation of queries,... i decided to mount all code to be able to get data from an endpoint, but changing the option `MOCK_DATA` to `true` in config file (./src/config/config.ts) will simulate a response from the endpoint and show information.
+Either if is an address or a transaction the option of subscribe will show on the bottom of the information and will trigger a subscription to be notified whenever a change happens in the address or transaction.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Subscriptions
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+This menu option will show all subscription that an user has and is able to go to address or transaction details (link in the hash).
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Notifications
 
-## Learn More
+This menu option will show all notification that an user has, when subscribe an hash, and is able to go to address or transaction details (link in the hash). Also i added a small feature that whenever a notification is created will show an icon next to the `Notifications` menu.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Change Currency
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+As requested I add in the menu an option for the user select which currency he want to show the values. This changes all views that has currency values (address information, transaction information,...).
+
+<br />
+<br />
+<br />
+
+### Tests
+
+Currently I didn't had any tests but I'll try to add cypress and some tests examples until deadline to show you as in a real application I would do.
+
