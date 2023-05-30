@@ -1,0 +1,1 @@
+export type HashType = 'NONE' | 'ADDRESS' | 'TRANSACTIOM';

@@ -1,0 +1,27 @@
+apikey: 3bda7385-be59-418f-9688-8b0a11178b62
+wallet:
+  {
+    "mnemonic": "green lunar harsh maple armed hip amateur quit lady extra crack around pride vacuum craft common valid violin tape glance father final decorate risk",
+    "xpub": "tpubDFGgYgBgHxfPb5Jho67wU7f43EWKcP3BpeZdza13xLN8YCTCztBXZUTAhjK6mauXiot4pSRry2TjwP36pGK8AoTAqyPoyawbjATYdAFpUVU"
+  }
+address1:
+  {
+    "address": "tb1qaa493cm7ekevdhv3lm07zlep6fh4a6a6l75fph"
+  },
+address2:
+  {
+    "address": "tb1qs4add84g40cwzuzq4dl2r8mlvfwd0qatryrazt"
+  }
+privatekey:
+  {
+    "key": "cRA6gpKVjG1QMQskxkvv3jtRnCBj19MHHbLmh8yA2WubgbqNfVwr"
+  }
+
+
+
+{
+"txId": "7e6812c4b6fc54f7d6efea5fd82790f6c48e02f74c27e4d479782aaa02433d9e"
+}
+{
+"txId": "64adce5a39397a9722886c396341b4f191b9757a4148b5ac13dc101868b0ebaf"
+}
