@@ -175,6 +175,8 @@ function CustomMenu(props: IProps) {
                   Currency
                 </InputLabel>
                 <Select
+                  native={true}
+                  name="currency-ddl"
                   labelId="currency-select-label"
                   id="currency-select"
                   value={state.user.currency || "BTC"}
@@ -182,9 +184,9 @@ function CustomMenu(props: IProps) {
                   onChange={handleChange}
                   sx={{ color: "white" }}
                 >
-                  <MenuItem value="BTC">BTC</MenuItem>
-                  <MenuItem value="USD">USD</MenuItem>
-                  <MenuItem value="EUR">EUR</MenuItem>
+                  <option value="BTC">BTC</option>
+                  <option value="USD">USD</option>
+                  <option value="EUR">EUR</option>
                 </Select>
               </FormControl>
             </Box>

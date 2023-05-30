@@ -1,6 +1,6 @@
 
 import { render, screen } from '@testing-library/react';
-import Index from '../Init';
+import Index from '../src/Init';
 
 // const mockedUsedNavigate = jest.fn();
 

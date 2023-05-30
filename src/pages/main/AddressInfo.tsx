@@ -96,7 +96,7 @@ function AddressInfo(props: IProps) {
     >
       <Card variant="outlined">
         <CardContent>
-          <div>
+          <div id="addressInfoBox">
             <h2>Address Information</h2>
             {data ? (
               <div>
@@ -144,7 +144,7 @@ function AddressInfo(props: IProps) {
           (s) => s.hash === (addressId || data.address)
         ) && (
           <CardActions>
-            <Button size="small" onClick={subscribe}>
+            <Button name="subscribeButton" size="small" onClick={subscribe}>
               Subscribe
             </Button>
           </CardActions>

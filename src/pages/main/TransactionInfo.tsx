@@ -75,7 +75,7 @@ function TransactionInfo(props: IProps) {
     >
       <Card variant="outlined">
         <CardContent>
-          <div>
+          <div id="transactionInfoBox">
             <h2>Transaction Information</h2>
             {data ? (
               <div>
@@ -118,7 +118,7 @@ function TransactionInfo(props: IProps) {
           (s) => s.hash === transactionId
         ) && (
           <CardActions>
-            <Button size="small" onClick={subscribe}>
+            <Button name="subscribeButton" size="small" onClick={subscribe}>
               Subscribe
             </Button>
           </CardActions>

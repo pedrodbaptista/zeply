@@ -142,12 +142,13 @@ export default function List() {
       >
         <InputLabel htmlFor="filled-adornment-search">Search</InputLabel>
         <FilledInput
+          name="searchBar"
           id="filled-adornment-search"
           type="text"
           onChange={onSearchChange}
           endAdornment={
             <InputAdornment position="end">
-              <IconButton onClick={handleSearch}>
+              <IconButton name="searchBarButton" onClick={handleSearch}>
                 <SearchIcon />
               </IconButton>
             </InputAdornment>

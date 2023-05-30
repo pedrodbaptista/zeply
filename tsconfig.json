@@ -6,6 +6,7 @@
       "dom.iterable",
       "esnext"
     ],
+    "baseUrl": "src",
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -19,10 +20,10 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "types": ["@testing-library/react"],
+    "types": ["@testing-library/react", "@testing-library/cypress", "cypress"],
     "paths": {
-      "*": ["./node_modules/*"]
+      "*": ["*", "./node_modules/*"]
     }
   },
-  "include": ["src", "src/tests" ]
+  "include": ["src", "tests" ]
 }

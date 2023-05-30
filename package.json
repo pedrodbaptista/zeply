@@ -8,6 +8,7 @@
     "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.13.2",
     "@reduxjs/toolkit": "^1.9.5",
+    "@testing-library/cypress": "^9.0.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -33,12 +34,17 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "cy:open": "cypress open",
+    "cy:run": "cypress run",
+    "test:cy:local": "start-server-and-test start http-get://localhost:3000 cy:open",
+    "test:cy": "start-server-and-test start http-get://localhost:3000 cy:run"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest"
+      "react-app/jest",
+      "plugin:cypress/recommended"
     ]
   },
   "browserslist": {
@@ -55,12 +61,25 @@
   },
   "devDependencies": {
     "@babel/preset-env": "^7.22.4",
+    "cypress": "^12.13.0",
+    "cypress-localstorage-commands": "^2.2.3",
+    "eslint-plugin-cypress": "^2.13.3",
+    "start-server-and-test": "^2.0.0",
     "ts-jest": "^29.1.0"
   },
   "jest": {
-    
-    "transformIgnorePatterns": [
-      "node_modules/(?!axios)/"
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "testTimeout": 10000,
+    "forceExit": true,
+    "testRegex": [
+      "tests/unit/.*.test.ts"
+    ],
+    "testPathIgnorePatterns": [
+      "<rootDir>/tests/cypress"
     ]
-  }
+  },
+  "pre-commit": [
+    "test:cy"
+  ]
 }
